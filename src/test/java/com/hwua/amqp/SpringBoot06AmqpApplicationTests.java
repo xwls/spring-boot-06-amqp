@@ -22,15 +22,15 @@ public class SpringBoot06AmqpApplicationTests {
      */
     @Test
     public void send() {
-        Map<String,Object> map = new HashMap<>();
-        map.put("id",1);
-        map.put("name","Java开发");
-        map.put("price",9.9);
-        rabbitTemplate.convertAndSend("hwua.direct","world",map);
+        Map<String, Object> map = new HashMap<>();
+        map.put("id", 1);
+        map.put("name", "Java开发");
+        map.put("price", 19.9);
+        rabbitTemplate.convertAndSend("hwua.direct", "world", map);
     }
 
     @Test
-    public void receive(){
+    public void receive() {
         Object o = rabbitTemplate.receiveAndConvert("jining");
         System.out.println(o.getClass());
         System.out.println(o);
