@@ -1,5 +1,6 @@
 package com.hwua.amqp;
 
+import com.hwua.amqp.po.Member;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
@@ -22,11 +23,13 @@ public class SpringBoot06AmqpApplicationTests {
      */
     @Test
     public void send() {
-        Map<String, Object> map = new HashMap<>();
-        map.put("id", 1);
-        map.put("name", "Java开发");
-        map.put("price", 19.9);
-        rabbitTemplate.convertAndSend("hwua.direct", "world", map);
+        Member member = new Member();
+        member.setId(1001);
+        member.setName("张三");
+        member.setAge(18);
+        member.setEmail("zs@zs.com");
+        member.setTel("18666666666");
+        rabbitTemplate.convertAndSend("member.fanout", "", member);
     }
 
     @Test
